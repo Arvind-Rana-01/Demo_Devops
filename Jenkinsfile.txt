@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                bat 'echo Dev version v1.2
+                bat 'echo Features have feature01'
             }
         }
     }
