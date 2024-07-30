@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                bat 'echo dev/v1.1
+                bat 'echo Dev version v1.2
             }
         }
     }
