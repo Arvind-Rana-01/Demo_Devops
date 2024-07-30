@@ -3,7 +3,8 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                bat 'echo Dev version v1.2
+                bat 'echo Dev branch version v1.1'
+		bat 'javac Demo.java'
             }
         }
     }
