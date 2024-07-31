@@ -10,17 +10,4 @@ pipeline{
         }
 	
     }
-	post {
-	        success {
-	            echo 'Pipeline completed successfully!'
-	            emailext (
-	                subject: "Yaa!! Build Successful",
-	                body: "Good news! The build was successful.",
-	                to: 'arvindrana545@gmail.com'
-	            )
-	        }
-	        failure {
-	            echo 'Pipeline failed.'
-	        }
-	    }
 }
