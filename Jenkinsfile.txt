@@ -1,13 +1,21 @@
-pipeline{
-    agent any   // don't have any ec2 instance so run it in any
-    stages{
-        stage('build'){
-            steps{
-                bat 'echo Dev branch of version v1.2'
-		bat 'cd react-app'
-		bat 'npm install'
-		bat 'npm run dev'
-		bat 'start http://localhost:5173/'
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                bat './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                bat './jenkins/scripts/kill.sh'
             }
         }
     }
