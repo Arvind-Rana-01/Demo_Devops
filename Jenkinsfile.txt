@@ -3,7 +3,11 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                bat 'echo Features have feature01'
+                bat 'echo Dev branch of version v1.2'
+		bat 'cd react-app'
+		bat 'npm install'
+		bat 'npm run dev'
+		bat 'start http://localhost:5173/'
             }
         }
     }
