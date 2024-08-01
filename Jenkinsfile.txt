@@ -1,14 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build01') {
-            steps {
-                bat 'npm run dev'
-            }
-        }
         stage('Build02') {
             steps {
                 bat 'start http://localhost:5173/'
+            }
+        }
+        stage('Build01') {
+            steps {
+                bat 'npm run dev'
             }
         }
     }
