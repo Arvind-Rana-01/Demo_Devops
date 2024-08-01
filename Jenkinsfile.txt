@@ -5,8 +5,38 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'cmd'
+                // Your build steps here
             }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Your test steps here
+            }
+        }
+    }
+
+    post {
+        success {
+            emailext(
+                to: 'arvindrana620445@gmail.com',
+                subject: "Successful Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Good news! The build was successful. Check it out at ${env.BUILD_URL}"
+            )
+        }
+        failure {
+            emailext(
+                to: 'arvindrana620445@gmail.com',
+                subject: "Failed Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Unfortunately, the build has failed. Please check the details at ${env.BUILD_URL}"
+            )
+        }
+        unstable {
+            emailext(
+                to: 'arvindrana620445@gmail.com',
+                subject: "Unstable Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The build is unstable. Review the details at ${env.BUILD_URL}"
+            )
         }
     }
 }
