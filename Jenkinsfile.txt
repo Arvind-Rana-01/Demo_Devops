@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Your build steps here
+                bat 'echo This is Dummy'
             }
         }
         stage('Test') {
