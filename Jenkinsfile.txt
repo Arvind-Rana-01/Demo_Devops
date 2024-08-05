@@ -13,13 +13,18 @@ pipeline{
 	success {
 	    echo 'Pipeline completed successfully!'
 	    emailext (
-		subject: "Yaa!! Build Successful",
-		body: "Good news! The build was successful.",
-		to: 'arvindrana545@gmail.com'
+		subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Good news! The build was successful. Check console output at ${env.BUILD_URL}.",
+                recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+		to: 'arvindrana620445@gmail.com'
 	    )
 	}
 	failure {
-	    echo 'Pipeline failed.'
+		echo 'Build failed!'
+		subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+		body: "Unfortunately, the build has failed. Check console output at ${env.BUILD_URL}.",
+		recipientProviders: [[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+		to: 'arvindrana620445@gmail.com'
 	}
     }
 }
