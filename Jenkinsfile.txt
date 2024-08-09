@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
     stages {
@@ -11,5 +12,12 @@ pipeline {
                 bat 'npm run dev'
             }
         }
+        stage('build'){
+            steps{
+                bat 'echo Dev branch version v1.1'
+                bat 'javac Demo.java'
+                bat 'java Demo.java'
+                }
+         }
     }
 }
