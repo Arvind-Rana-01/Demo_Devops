@@ -5,6 +5,7 @@ pipeline {
         stage('Build02') {
             steps {
                 bat 'start http://localhost:5173/'
+                bat 'rethj'
             }
         }
         stage('Build01') {
