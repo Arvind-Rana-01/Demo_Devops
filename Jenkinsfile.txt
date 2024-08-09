@@ -1,12 +1,23 @@
-pipeline{
-    agent any   // don't have any ec2 instance so run it in any
-    stages{
+
+pipeline {
+    agent any
+    stages {
+        stage('Build02') {
+            steps {
+                bat 'start http://localhost:5173/'
+            }
+        }
+        stage('Build01') {
+            steps {
+                bat 'npm run dev'
+            }
+        }
         stage('build'){
             steps{
                 bat 'echo Dev branch version v1.1'
-		bat 'javac Demo.java'
-		bat 'java Demo.java'
-            }
-        }
+                bat 'javac Demo.java'
+                bat 'java Demo.java'
+                }
+         }
     }
 }
